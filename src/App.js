@@ -1,23 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
-
+import Header from "./components/Header";
+import Main from "./components/Main";
+import {useState} from "react";
+import data from './components/data.json'
+import Footer from "./components/Footer";
+import AddForm from "./components/AddForm";
 function App() {
+    const [emp, setEmp] = useState(data);
+    const [hide, setHide] = useState(true);
+    const addemp = (employee)=>{
+        setEmp([...emp,employee])
+    }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header/>
+      <Main emp={emp} hide={hide} setHide={setHide} />
+        <Footer emp={emp}/>
+        <AddForm emp={emp} hide={hide} setHide={setHide} addemp={addemp}/>
     </div>
   );
 }
